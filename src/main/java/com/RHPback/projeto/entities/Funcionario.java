@@ -13,7 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 //import javax.validation.constraints.NotNull;
 
 @Entity
@@ -37,6 +41,12 @@ public class Funcionario implements Serializable {
 
 	@Column(name = "senha", length = 50)
 	private String senha;
+	
+	
+	//@JsonIgnore
+	//@OneToOne
+	//@MapsId
+	//private Reuniao criador_reuniao;
 
 	////////////////////// ASSOCIAÇÕES///////////////////////
 	///////////////////////////////////////////////////////
@@ -87,8 +97,11 @@ public class Funcionario implements Serializable {
 	public String getSenha() {
 		return senha;
 	}
-
+	//public void setReuniao(Reuniao criador_reuniao) {
+		//this.criador_reuniao = criador_reuniao;
+	//}
 	
+
 	///////////////////////////// COLLETCTIONS GET///////////////////
 	///////////////////////////////////////////////////////////////////
 	public Set<Reuniao> getReuniao() {

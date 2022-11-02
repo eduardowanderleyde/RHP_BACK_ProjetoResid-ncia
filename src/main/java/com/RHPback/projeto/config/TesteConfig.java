@@ -30,15 +30,6 @@ public class TesteConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception { // tudo que colocar dentro desse método, vai ser executado quando a aplicação for inicializada.
 	    
 		
-		/////////////////// REUNIAO ///////////////////////////////
-		//////////////////////////////////////////////////////////
-		/// public Reuniao(UUID idReuniao, Instant moment, Object sala, Funcionario criador)
-		
-		
-		Reuniao r1=new Reuniao(null, Instant.parse("2022-07-20T19:53:07Z"),"SDS2");
-		Reuniao r2=new Reuniao(null, Instant.parse("2022-06-20T21:53:07Z"),"SDS2");
-		Reuniao r3=new Reuniao(null, Instant.parse("2022-05-20T10:53:07Z"),"SDS2");
-		
 		
 
 		/////////////////////// Funcionario ////////////////////////////////////
@@ -51,8 +42,23 @@ public class TesteConfig implements CommandLineRunner {
 		Funcionario p4 = new Funcionario(null,  "Elson Barcelos","elson@gmail.com","elisabb" );
 		Funcionario p5 = new Funcionario(null,  "Claudia Beatriz","claudia@gmail.com","100%" );
 		
+		
+		
+		
+
+		/////////////////// REUNIAO ///////////////////////////////
+		//////////////////////////////////////////////////////////
+		/// public Reuniao(UUID idReuniao, Instant moment, Object sala, Funcionario criador)
+		
+		
+		Reuniao r1=new Reuniao(null, Instant.parse("2022-07-20T19:53:07Z"),"SDS2",p1.getNome());
+		Reuniao r2=new Reuniao(null, Instant.parse("2022-06-20T21:53:07Z"),"SDS2",p1.getNome());
+		Reuniao r3=new Reuniao(null, Instant.parse("2022-05-20T10:53:07Z"),"SDS2",p2.getNome());
+		
 		ReuniaoRepository.saveAll(Arrays.asList(r1,r2,r3));
-		userRepository.saveAll(Arrays.asList(p1,p2,p3));
+		userRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+		
 		
 		///////////////// ASSOCIAÇÕES ////////////////////////////
 		/////////////////////////////////////////////////////////
@@ -73,7 +79,16 @@ public class TesteConfig implements CommandLineRunner {
 		p5.getReuniao().add(r3);
 		p5.getReuniao().add(r2);
 		
-		userRepository.saveAll(Arrays.asList(p1,p2,p3));
+		userRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		//ReuniaoRepository.saveAll(Arrays.asList(r1,r2,r3));
 		
+		//r1.setCriador(p1);
+		//r2.setCriador(p2);
+		//r3.setCriador(p3);
+		
+		//ReuniaoRepository.save(r1);
+		//ReuniaoRepository.save(r2);
+		//ReuniaoRepository.save(r3);
 	}
 }
+

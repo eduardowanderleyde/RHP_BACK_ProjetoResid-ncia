@@ -6,12 +6,14 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -44,13 +46,14 @@ public class Reuniao implements Serializable {
 	// @OneToMany(mappedBy="material")
 	// private List<NomeMaterial> listamaterial=new ArrayList<>();
 
+	
 	//@OneToOne
-	//(mappedBy = "reuniao", cascade = CascadeType.ALL)
+	//(mappedBy = "criador_reuniao", cascade = CascadeType.ALL)
 	//@JoinColumn(name = "criador_id")
-	
-	
 	//private Funcionario criador;
      
+	private String criador;
+	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "reuniao")
 	private Set<Funcionario> convidados = new HashSet<>();
@@ -62,13 +65,12 @@ public class Reuniao implements Serializable {
 
 	}
 
-	public Reuniao(Long idReuniao, Instant moment, String sala) {
-			//, Funcionario criador) {
+	public Reuniao(Long idReuniao, Instant moment, String sala,String criador) {
 		super();
 		this.idReuniao = idReuniao;
 		this.moment = moment;
 		this.sala = sala;
-		//this.criador = criador;
+		this.setCriador(criador);
 
 	}
 	//////////////////////// GET E SETTERS DE ATRIBUTOS///////////////////////
@@ -97,7 +99,15 @@ public class Reuniao implements Serializable {
 	public void setSala(String sala) {
 		this.sala = sala;
 	}
+     
+	public String getCriador() {
+		return criador;
+	}
 
+	public void setCriador(String criador) {
+		this.criador = criador;
+	}
+	
 	////////// GET DE COLECTIONS//////////////////
 	/////////////////////////////////////////////
 
@@ -105,9 +115,6 @@ public class Reuniao implements Serializable {
 	// this.listamaterial = listamaterial;
 	// }
 
-	//public Funcionario getCriador() {
-		//return criador;
-	///}
 
 	public Set<Funcionario> getConvidados() {
 		return convidados;
