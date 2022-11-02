@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.RHPback.projeto.entities.Funcionario;
 import com.RHPback.projeto.repository.FuncionarioRepository;
+import com.RHPback.projeto.service.exceptions.ResourceNotFoundException;
 
 @Service
 public class FuncionarioService {
@@ -21,7 +22,8 @@ public class FuncionarioService {
 
 	public Funcionario findById(Long id) {
 		Optional<Funcionario> obj = repository.findById(id);
-		return obj.get();
+		//return obj.get();
+		return obj.orElseThrow(()-> new ResourceNotFoundException(id));
 	}
 
 	public Funcionario insert(Funcionario obj) {
