@@ -51,8 +51,12 @@ public class Funcionario implements Serializable {
 	////////////////////// ASSOCIAÇÕES///////////////////////
 	///////////////////////////////////////////////////////
 
-	@ManyToMany
-	@JoinTable(name = "tb_reuniao_funcionario", joinColumns = @JoinColumn(name = "funcionario_id"), inverseJoinColumns = @JoinColumn(name = "reuniao_id"))
+	
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "convidados")
+	//@ManyToMany
+	//@JoinTable(name = "tb_reuniao_funcionario", joinColumns = @JoinColumn(name = "funcionario_id"), inverseJoinColumns = @JoinColumn(name = "reuniao_id"))
 	private Set<Reuniao> reuniao = new HashSet<>();
 
 	///////////////// CONSTRUTORES/////////////////////////////

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.RHPback.projeto.entities.Reuniao;
 import com.RHPback.projeto.repository.ReuniaoRepository;
+import com.RHPback.projeto.service.exceptions.ResourceNotFoundException;
 
 @Service
 public class ReuniaoService {
@@ -21,7 +22,8 @@ public class ReuniaoService {
 
 	public Reuniao findById(Long id) {
 		Optional<Reuniao> obj = repository.findById(id);
-		return obj.get();
+		//return obj.get();
+		return obj.orElseThrow(()-> new ResourceNotFoundException(id));
 	}
 
 	public Reuniao insert(Reuniao obj) {

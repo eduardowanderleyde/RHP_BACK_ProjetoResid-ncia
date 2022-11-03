@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.RHPback.projeto.entities.Funcionario;
 import com.RHPback.projeto.repository.FuncionarioRepository;
+import com.RHPback.projeto.service.exceptions.DatabaseException;
 import com.RHPback.projeto.service.exceptions.ResourceNotFoundException;
 
 @Service
@@ -31,8 +34,19 @@ public class FuncionarioService {
 	}
 
 	public void delete(Long id) {
-		repository.deleteById(id);
+		//repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		}catch(EmptyResultDataAccessException e) {
+			//e.printStackTrace();
+			throw new ResourceNotFoundException(id);
+		}catch (DataIntegrityViolationException e) { // violação de integridades de dados.
+			//e.printStackTrace();
+			throw new DatabaseException(e.getMessage());// exceção da camada de serviço.
+		}
+
 	}
+	
 
 	public Funcionario update(Long id, Funcionario obj) {
 		// Funcionario entity=repository.getReferenceById(id);

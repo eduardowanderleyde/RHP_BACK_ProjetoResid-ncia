@@ -64,7 +64,32 @@ public class TesteConfig implements CommandLineRunner {
 		/////////////////////////////////////////////////////////
 		
 		
-		p1.getReuniao().add(r1);
+		r1.getConvidados().add(p1);
+		r1.getConvidados().add(p2);
+		r1.getConvidados().add(p3);
+		
+		r2.getConvidados().add(p3);
+		r2.getConvidados().add(p4);
+		r2.getConvidados().add(p5);
+		r1.getConvidados().add(p1);
+		
+		r3.getConvidados().add(p1);
+		r3.getConvidados().add(p2);
+		r3.getConvidados().add(p5);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
+		
 		p1.getReuniao().add(r3);
 		
 		p2.getReuniao().add(r1);
@@ -77,10 +102,10 @@ public class TesteConfig implements CommandLineRunner {
 		p4.getReuniao().add(r1);
 		
 		p5.getReuniao().add(r3);
-		p5.getReuniao().add(r2);
+		p5.getReuniao().add(r2);*/
 		
-		userRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
-		//ReuniaoRepository.saveAll(Arrays.asList(r1,r2,r3));
+		//userRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		ReuniaoRepository.saveAll(Arrays.asList(r1,r2,r3));
 		
 		//r1.setCriador(p1);
 		//r2.setCriador(p2);

@@ -6,18 +6,17 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_reuniao")
@@ -54,8 +53,10 @@ public class Reuniao implements Serializable {
      
 	private String criador;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "reuniao")
+	@ManyToMany
+	@JoinTable(name = "tb_reuniao_funcionario", joinColumns = @JoinColumn(name = "reuniao_id"), inverseJoinColumns = @JoinColumn(name = "funcionario_id"))
+	//@JsonIgnore
+	//@ManyToMany(mappedBy = "reuniao")
 	private Set<Funcionario> convidados = new HashSet<>();
 
 	/////////////////// CONSTRUTORES///////////////////////////////////
