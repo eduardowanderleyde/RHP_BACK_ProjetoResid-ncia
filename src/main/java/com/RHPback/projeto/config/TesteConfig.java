@@ -78,15 +78,11 @@ public class TesteConfig implements CommandLineRunner {
 		r3.getConvidados().add(p5);
 		
 		
+		ReuniaoRepository.saveAll(Arrays.asList(r1,r2,r3));
 		
 		
-		
-		
-		
-		
-		
-		
-		
+		////////////// excluídos//////////////////////////
+		/////////////////////////////////////////////////
 		
 		/*
 		
@@ -105,7 +101,6 @@ public class TesteConfig implements CommandLineRunner {
 		p5.getReuniao().add(r2);*/
 		
 		//userRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
-		ReuniaoRepository.saveAll(Arrays.asList(r1,r2,r3));
 		
 		//r1.setCriador(p1);
 		//r2.setCriador(p2);
